@@ -6,6 +6,9 @@ const parksUrl = "https://data.nashville.gov/resource/74d7-b74t.json"
 const ticketsUrl = "https://app.ticketmaster.com/discovery/v2/events.json"
 const restaurantsUrl = "https://developers.zomato.com/api/v2.1/search?entity_id=1138&entity_type=city"
 
+// Local DB from json server
+const itineraryUrl = "http://localhost:3000/itinerary"
+
 // Proxy URL if needed
 const proxyUrl = "https://cors-anywhere.herokuapp.com/"
 
@@ -37,5 +40,28 @@ export const apiManager = {
       }
     })
       .then(response => response.json())
+  },
+  getItinerary() {
+    return fetch(itineraryUrl)
+      .then(response => response.json())
+  },
+  postItineraryItem(resource, name, address) {
+    console.log(resource, name, address)
+    return fetch(itineraryUrl + "/1")
+      .then(response => response.json())
+      .then(itinerary => {
+        itinerary[resource].name = name
+        itinerary[resource].address = address
+
+        console.log(itinerary[resource])
+
+        return fetch(itineraryUrl + "/1", {
+          method: "PUT",
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(itinerary)
+        }).then(response => response.json())
+      })
   }
 }
