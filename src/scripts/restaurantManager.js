@@ -1,40 +1,54 @@
 // import api functionality
 import { apiManager } from "./apiManager.js";
+import { getItineraryAndRenderToDOM } from "./itineraryManager.js";
 
-// get element for search input and button
+// get elements for search input, search button, and results list
 const restaurantSearchInput = document.getElementById("restaurant_search_input")
 const restaurantSearchBtn = document.getElementById("restaurant_search_btn")
-
-// get element for output
-const restaurantOutput = document.getElementById("restaurant_results")
+const restaurantResultsList = document.getElementById("restaurant_results")
 
 
-// get results from API
+// get search results from Zomato API and append to DOM
 const searchRestaurants = () => {
+  // get search value from text input
   const keyword = restaurantSearchInput.value
+
   apiManager.getRestaurants(keyword)
     .then(results => {
-      const restaurantsArray = results.restaurants;
-      // log results for testing
-      console.log(restaurantsArray);
-      // clear unordered list
-      restaurantOutput.innerHTML = "";
-      // iterate results, convert to HTML and append to DOM
-      restaurantsArray.forEach(restaurant => {
-        const htmlRep = restaurantAsHTML(restaurant.restaurant)
-        restaurantOutput.innerHTML += htmlRep
+      // clear unordered list for new search results
+      restaurantResultsList.innerHTML = "";
+
+      let allResultsAsHTML = "";
+      // iterate results.restaurants, convert to HTML, and append to DOM
+      results.restaurants.forEach(restaurant => {
+        const htmlRep = restaurantAsHTML(restaurant.restaurant);
+        allResultsAsHTML += htmlRep;
       });
+      restaurantResultsList.innerHTML = allResultsAsHTML;
     }
     )
 }
 
-// attach event listener to search button
-restaurantSearchBtn.addEventListener("click", searchRestaurants)
-
 // convert results to HTML format
 const restaurantAsHTML = (restaurant) => {
   return `
-    <li>${restaurant.name}</li>
+    <li>${restaurant.name} <button id="save_restaurant--${restaurant.name}--${restaurant.location.address}">save</button></li>
   `
 }
-// output results to element
+
+
+// save restaurant to itinerary
+const saveRestaurant = (evt) => {
+  // split the id
+  const idStrings = evt.target.id.split("--")
+  if (idStrings[0] === "save_restaurant") {
+    apiManager.postItineraryItem("restaurant", idStrings[1], idStrings[2])
+      .then(getItineraryAndRenderToDOM)
+  }
+}
+
+// attach event listeners to search button and restaurant container
+restaurantSearchBtn.addEventListener("click", searchRestaurants)
+
+// attach event listener to restaurant results list to listen for save clicks
+restaurantResultsList.addEventListener("click", saveRestaurant)

@@ -1,9 +1,23 @@
 {
-  "itinerary": {
-    "id": 1,
-    "park": {},
-    "restaurant": {},
-    "artwork": {},
-    "concert": {}
-  }
+  "itinerary": [
+    {
+      "id": 1,
+      "park": {
+        "name": "test park",
+        "address": "test"
+      },
+      "restaurant": {
+        "name": "Ginger",
+        "address": "2861 Logan St, Nashville 37211"
+      },
+      "artwork": {
+        "name": "test art",
+        "address": "test"
+      },
+      "concert": {
+        "name": "test concert",
+        "address": "test"
+      }
+    }
+  ]
 }
