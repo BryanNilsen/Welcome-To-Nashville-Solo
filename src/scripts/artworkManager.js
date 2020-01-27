@@ -37,7 +37,10 @@ const searchArtwork = () => {
 // convert results to HTML format
 const artworkAsHTML = (artItem) => {
   return `
-    <li>${artItem.artwork} <button id="save_artwork--${artItem.artwork}--${artItem.location}">save</button></li>
+  <li>${artItem.artwork}: ${artItem.last_name}
+    <button id="save_artwork--${artItem.artwork}--${artItem.location}">save</button>
+    <a href="${artItem.page_link.url}" target="_blank">more info</a>
+    </li>
   `
 }
 

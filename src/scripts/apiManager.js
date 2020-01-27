@@ -15,30 +15,23 @@ const proxyUrl = "https://cors-anywhere.herokuapp.com/"
 export const apiManager = {
   getArtwork(keyword) {
     const keyUpper = keyword.toUpperCase()
-    const urlWithKey = `${artCollectionsUrl}?$$app_token=${apiKeys.nashvilleDataKey}&$where=UPPER(artwork) like '%25${keyUpper}%25'`
+    const urlWithKey = `${artCollectionsUrl}?$where=UPPER(artwork) like '%25${keyUpper}%25'`
     return fetch(urlWithKey)
       .then(response => response.json())
   },
   getParks() {
-    const urlWithKey = `${parksUrl}?$$app_token=${apiKeys.parksKey}`
+    const urlWithKey = `${parksUrl}`
     return fetch(urlWithKey)
       .then(response => response.json())
       .then(parks => console.log(parks))
   },
-  getTickets() {
-    const urlWithKey = `${ticketsUrl}?classificationName=music&city=Nashville&size=50&apikey=${apiKeys.ticketmasterKey}`
+  getConcerts(genreId, keyword) {
+    const urlWithKey = `${ticketsUrl}?classificationName=music&city=Nashville&size=50&apikey=${apiKeys.ticketmasterKey}&keyword=${keyword}&genreId=${genreId}&sort=date,asc`
     return fetch(urlWithKey)
       .then(response => response.json())
-      .then(tickets => console.log(tickets._embedded.events))
   },
   getRestaurants(keyword) {
-    return fetch(`${restaurantsUrl}&q=${keyword}`, {
-      method: "GET",
-      headers: {
-        "user-key": `${apiKeys.zomatoKey}`,
-        "content-type": "application/json"
-      }
-    })
+    return fetch(`${restaurantsUrl}&q=${keyword}&apikey=${apiKeys.zomatoKey}`)
       .then(response => response.json())
   },
   getItinerary() {
