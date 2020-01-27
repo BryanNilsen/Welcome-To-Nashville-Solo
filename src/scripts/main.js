@@ -10,7 +10,3 @@ import { getItineraryAndRenderToDOM } from "./itineraryManager.js"
 // apiManager.getRestaurants("chicken");
 
 getItineraryAndRenderToDOM();
-
-// add current date to page
-const moment = moment().format("dddd, MMM Do, YYYY");
-document.getElementById("moment").append(moment)
