@@ -13,11 +13,11 @@ const itineraryUrl = "http://localhost:3000/itinerary"
 const proxyUrl = "https://cors-anywhere.herokuapp.com/"
 
 export const apiManager = {
-  getMuseums() {
-    const urlWithKey = `${artCollectionsUrl}?$$app_token=${apiKeys.nashvilleDataKey}`
+  getArtwork(keyword) {
+    const keyUpper = keyword.toUpperCase()
+    const urlWithKey = `${artCollectionsUrl}?$$app_token=${apiKeys.nashvilleDataKey}&$where=UPPER(artwork) like '%25${keyUpper}%25'`
     return fetch(urlWithKey)
       .then(response => response.json())
-      .then(artCollections => console.log(artCollections))
   },
   getParks() {
     const urlWithKey = `${parksUrl}?$$app_token=${apiKeys.parksKey}`
@@ -31,8 +31,8 @@ export const apiManager = {
       .then(response => response.json())
       .then(tickets => console.log(tickets._embedded.events))
   },
-  getRestaurants(search) {
-    return fetch(`${restaurantsUrl}&q=${search}`, {
+  getRestaurants(keyword) {
+    return fetch(`${restaurantsUrl}&q=${keyword}`, {
       method: "GET",
       headers: {
         "user-key": `${apiKeys.zomatoKey}`,

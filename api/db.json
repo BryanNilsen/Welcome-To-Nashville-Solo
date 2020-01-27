@@ -7,12 +7,12 @@
         "address": "test"
       },
       "restaurant": {
-        "name": "Ginger",
-        "address": "2861 Logan St, Nashville 37211"
+        "name": "Manny's House of Pizza",
+        "address": "15 Arcade, Nashville 37219"
       },
       "artwork": {
-        "name": "test art",
-        "address": "test"
+        "name": "From the Four Corners",
+        "address": "Southeast Davidson Library and Regional Community Center"
       },
       "concert": {
         "name": "test concert",

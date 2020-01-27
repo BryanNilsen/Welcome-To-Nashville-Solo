@@ -12,13 +12,16 @@ const restaurantResultsList = document.getElementById("restaurant_results")
 const searchRestaurants = () => {
   // get search value from text input
   const keyword = restaurantSearchInput.value
+  console.log('keyword: ', keyword);
 
   apiManager.getRestaurants(keyword)
     .then(results => {
       // clear unordered list for new search results
       restaurantResultsList.innerHTML = "";
 
+      // build all results before appending to DOM
       let allResultsAsHTML = "";
+
       // iterate results.restaurants, convert to HTML, and append to DOM
       results.restaurants.forEach(restaurant => {
         const htmlRep = restaurantAsHTML(restaurant.restaurant);
@@ -47,7 +50,7 @@ const saveRestaurant = (evt) => {
   }
 }
 
-// attach event listeners to search button and restaurant container
+// attach event listeners to search button
 restaurantSearchBtn.addEventListener("click", searchRestaurants)
 
 // attach event listener to restaurant results list to listen for save clicks
