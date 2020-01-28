@@ -46,6 +46,7 @@ const artworkAsHTML = (artItem) => {
 
 // save artwork to itinerary
 const saveArtwork = (evt) => {
+  console.log(evt)
   // split the id
   const idStrings = evt.target.id.split("--")
   if (idStrings[0] === "save_artwork") {

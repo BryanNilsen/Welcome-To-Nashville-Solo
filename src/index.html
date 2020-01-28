@@ -6,51 +6,84 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Welcome to Nashville</title>
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
   <h1>WELCOME TO NASHVILLE</h1>
-  <h2 id="moment"></h2>
 
-  <!-- Begin Concert Section -->
-  <div id="concerts">
-    <h1>Concerts</h1>
-    <select name="" id="concert_select"></select>
-    <input type="text" name="" id="concert_search_input">
-    <button id="concert_search_btn">Search
-      Concerts</button>
-    <ul id="concert_results">
-    </ul>
+  <h2>Make Today Your Best Day Ever.</h2>
+  <p>What would you like to do first?</p>
+  <p>Check out some local art >></p>
+  <p>Play outdoors at one of our awesome parks >></p>
+  <p>Get your grub on >></p>
+  <p>Hit up a concert and find out why we're called 'Music City' >></p>
+
+  <!-- Begin Navigation -->
+  <nav>
+    <div id="tab_concerts" class="nav_tab">Concerts</div>
+    <div id="tab_parks" class="nav_tab inactive">Parks</div>
+    <div id="tab_artwork" class="nav_tab inactive">Artwork</div>
+    <div id="tab_restaurants" class="nav_tab inactive">Restaurants</div>
+  </nav>
+  <!-- End Navigation -->
+
+  <!-- Begin Sections Container -->
+  <div id="main_container">
+
+    <!-- Begin Concert Section -->
+    <div id="concerts" class="section">
+      <h1>Concerts</h1>
+      <select name="" id="concert_select"></select>
+      <input type="text" name="" id="concert_search_input">
+      <button id="concert_search_btn">Search
+        Concerts</button>
+      <ul id="concert_results">
+      </ul>
+    </div>
+    <!-- End Restaurant Section -->
+
+    <!-- Begin Restaurant Section -->
+    <div id="restaurants" class="section hidden">
+      <h1>Restaurants</h1>
+      <input type="text" name="" id="restaurant_search_input"> <button id="restaurant_search_btn">Search
+        Restaurants</button>
+      <ul id="restaurant_results">
+      </ul>
+    </div>
+    <!-- End Restaurant Section -->
+
+    <!-- Begin Art Section -->
+    <div id="artwork" class="section hidden">
+      <h1>Public Artwork</h1>
+      <input type="text" name="" id="artwork_search_input"> <button id="artwork_search_btn">Search Artwork</button>
+      <ul id="artwork_results">
+      </ul>
+    </div>
+    <!-- End Art Section -->
+
+    <!-- Begin Art Section -->
+    <div id="parks" class="section hidden">
+      <h1>Public Parks</h1>
+      <input type="text" name="" id="park_search_input"> <button id="park_search_btn">Search Parks</button>
+      <ul id="park_results">
+      </ul>
+    </div>
+    <!-- End Art Section -->
+
+
+
   </div>
-  <!-- End Restaurant Section -->
+  <!-- End Section Containers -->
 
-  <!-- Begin Restaurant Section -->
-  <div id="restaurants">
-    <h1>Restaurants</h1>
-    <input type="text" name="" id="restaurant_search_input"> <button id="restaurant_search_btn">Search
-      Restaurants</button>
-    <ul id="restaurant_results">
-    </ul>
-  </div>
-  <!-- End Restaurant Section -->
-
-  <!-- Begin Art Section -->
-  <div id="artwork">
-    <h1>Public Artwork</h1>
-    <input type="text" name="" id="artwork_search_input"> <button id="artwork_search_btn">Search Artwork</button>
-    <ul id="artwork_results">
-    </ul>
-  </div>
-  <!-- End Art Section -->
-
-
-  <div id="itinerary">
+  <!-- Begin Itinerary Section -->
+  <div id="itinerary" class="">
     <h1>Your Itinerary:</h1>
     <section id="itinerary_results">
-
     </section>
-
   </div>
+  <!-- End Itinerary Section -->
+
   <script type="module" src="/scripts/main.js"></script>
 </body>
 

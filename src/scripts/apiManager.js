@@ -23,7 +23,6 @@ export const apiManager = {
     const urlWithKey = `${parksUrl}`
     return fetch(urlWithKey)
       .then(response => response.json())
-      .then(parks => console.log(parks))
   },
   getConcerts(genreId, keyword) {
     const urlWithKey = `${ticketsUrl}?classificationName=music&city=Nashville&size=50&apikey=${apiKeys.ticketmasterKey}&keyword=${keyword}&genreId=${genreId}&sort=date,asc`
