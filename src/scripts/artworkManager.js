@@ -44,7 +44,7 @@ const artworkAsHTML = (artItem) => {
   `
 }
 
-// save restaurant to itinerary
+// save artwork to itinerary
 const saveArtwork = (evt) => {
   // split the id
   const idStrings = evt.target.id.split("--")
