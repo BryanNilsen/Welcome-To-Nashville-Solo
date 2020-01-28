@@ -67,13 +67,23 @@ const concertAsHTML = (concertItem) => {
   return `
   <li>${concertItem.dates.start.localDate} ${concertItem.name}
   <br/ > ${concertItem._embedded.venues[0].name}
-    <button id="save_artwork--${concertItem.name}--${concertItem._embedded.venues[0].name}">save</button>
+    <button id="save_concert--${concertItem.name}--${concertItem._embedded.venues[0].name}">save</button>
     <a href="${concertItem.url}" target="_blank"> get tix </a>
     </li>
   `
 }
 
+// save concert to itinerary
+const saveConcert = (evt) => {
+  // split the id
+  const idStrings = evt.target.id.split("--")
+  if (idStrings[0] === "save_concert") {
+    apiManager.postItineraryItem("concert", idStrings[1], idStrings[2])
+      .then(getItineraryAndRenderToDOM)
+  }
+}
 // attach event listeners to search button
 concertSearchBtn.addEventListener("click", searchConcerts)
 
-// apiManager.getConcerts("KnvZfZ7vAeA")
+// attach event listener to concert results list to listen for save clicks
+concertResultsList.addEventListener("click", saveConcert)
