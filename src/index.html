@@ -5,19 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Welcome to Nashville</title>
+  <title>Welcome to Nashville - Build your Itinerary</title>
   <link rel="stylesheet" href="styles/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <h1>WELCOME TO NASHVILLE</h1>
-
-  <h2>Make Today Your Best Day Ever.</h2>
-  <p>What would you like to do first?</p>
-  <p>Check out some local art >></p>
-  <p>Play outdoors at one of our awesome parks >></p>
-  <p>Get your grub on >></p>
-  <p>Hit up a concert and find out why we're called 'Music City' >></p>
+  <h1 class="welcome">Welcome to Nashville</h1>
+  <p class="center">What would you like to do?</p>
 
   <!-- Begin Navigation -->
   <nav>
@@ -35,9 +30,8 @@
     <div id="concerts" class="section">
       <h1>Concerts</h1>
       <select name="" id="concert_select"></select>
-      <input type="text" name="" id="concert_search_input">
-      <button id="concert_search_btn">Search
-        Concerts</button>
+      <input type="text" name="" id="concert_search_input" placeholder="keyword">
+      <button id="concert_search_btn">Search</button>
       <ul id="concert_results">
       </ul>
     </div>
@@ -46,8 +40,8 @@
     <!-- Begin Restaurant Section -->
     <div id="restaurants" class="section hidden">
       <h1>Restaurants</h1>
-      <input type="text" name="" id="restaurant_search_input"> <button id="restaurant_search_btn">Search
-        Restaurants</button>
+      <input type="text" name="" id="restaurant_search_input" placeholder="keyword"> <button
+        id="restaurant_search_btn">Search</button>
       <ul id="restaurant_results">
       </ul>
     </div>
@@ -56,21 +50,23 @@
     <!-- Begin Art Section -->
     <div id="artwork" class="section hidden">
       <h1>Public Artwork</h1>
-      <input type="text" name="" id="artwork_search_input"> <button id="artwork_search_btn">Search Artwork</button>
+      <input type="text" name="" id="artwork_search_input" placeholder="keyword"> <button
+        id="artwork_search_btn">Search</button>
       <ul id="artwork_results">
       </ul>
     </div>
     <!-- End Art Section -->
 
-    <!-- Begin Art Section -->
+    <!-- Begin Parks Section -->
     <div id="parks" class="section hidden">
       <h1>Public Parks</h1>
-      <input type="text" name="" id="park_search_input"> <button id="park_search_btn">Search Parks</button>
+      <ul id="park_feature_options"></ul>
+      <input type="text" name="" id="park_search_input" placeholder="keyword"> <button
+        id="park_search_btn">Search</button>
       <ul id="park_results">
       </ul>
     </div>
-    <!-- End Art Section -->
-
+    <!-- End Parks Section -->
 
 
   </div>

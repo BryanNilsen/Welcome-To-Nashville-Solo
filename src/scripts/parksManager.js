@@ -6,15 +6,68 @@ import { getItineraryAndRenderToDOM } from "./itineraryManager.js";
 const parkSearchInput = document.getElementById("park_search_input")
 const parkSearchBtn = document.getElementById("park_search_btn")
 const parkResultsList = document.getElementById("park_results")
+const parkFeatureContainer = document.getElementById("park_feature_options")
 
+
+const parkFeatures = {
+  "ada_accessible": "ADA Accessible",
+  "baseball_fields": "Baseball Fields",
+  "basketball_courts": "Basketball Courts",
+  "boat_launch": "Boat Launch",
+  "camping_available_by_permit": "Camping by Permit",
+  "canoe_launch": "Canoe Launch",
+  "community_center": "Community Center",
+  "community_garden": "Community Garden",
+  "dog_park": "Dog Park",
+  "disc_golf": "Disc Golf",
+  "fishing_by_permit": "Fishing by Permit",
+  "football_multi_purpose_fields": "Football Fields",
+  "golf_course": "Golf Course",
+  "hiking_trails": "Hiking Trails",
+  "historic_features": "Historic Features",
+  "horse_trails": "Horse Trails",
+  "lake": "Lake",
+  "mountain_bike_trails": "Mountain Bike Trails",
+  "nature_center": "Nature Center",
+  "picnic_shelters_quantity": "Picnic Shelters",
+  "playground": "Playground",
+  "restrooms_available": "Restrooms Available",
+  "skate_park": "Skate Park",
+  "soccer_fields": "Soccer Fields",
+  "spray_park": "Spray Park",
+  "swimming_pool": "Swimming Pool",
+  "tennis_courts": "Tennis Courts",
+  "volleyball": "Volleyball",
+  "walk_jog_paths": "Walk/Jog Paths",
+}
+
+const renderParkFeatureOptions = () => {
+  let parkFeaturesHTML = ""
+  for (const key in parkFeatures) {
+    parkFeaturesHTML += `<li><input type="checkbox" name=${key} id="feature--${key}" class="feature_box"/>${parkFeatures[key]}</li>`
+  }
+  parkFeatureContainer.innerHTML = parkFeaturesHTML
+}
+
+renderParkFeatureOptions()
 
 // get search results from Metro Public Parks API and append to DOM
 const searchParks = () => {
   // get search value from text input
   const keyword = parkSearchInput.value
-  console.log('keyword: ', keyword);
+  // get checked checkboxes to run through fetch call
+  const options = []
+  const checkboxes = document.querySelectorAll(".feature_box")
+  checkboxes.forEach(checkbox => {
+    if (checkbox.checked === true) {
+      const featureId = checkbox.id.split("--")[1]
+      options.push(featureId)
+    }
+  })
+  console.log('options: ', options);
 
-  apiManager.getParks(keyword)
+
+  apiManager.getParks(keyword, options)
     .then(results => {
       console.log('results: ', results);
 
