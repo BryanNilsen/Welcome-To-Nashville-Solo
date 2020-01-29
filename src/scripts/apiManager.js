@@ -20,6 +20,7 @@ export const apiManager = {
       .then(response => response.json())
   },
   getParks(keyword, options) {
+    // options parameter represents selected park feature checkboxes
     let featureQueries = ""
     options.forEach(option => {
       const string = `&${option}=Yes`
@@ -27,7 +28,6 @@ export const apiManager = {
     });
     const keyUpper = keyword.toUpperCase()
     const urlWithKey = `${parksUrl}?$where=UPPER(park_name) like '%25${keyUpper}%25'${featureQueries}`
-    console.log('urlWithKey: ', urlWithKey);
 
     return fetch(urlWithKey)
       .then(response => response.json())

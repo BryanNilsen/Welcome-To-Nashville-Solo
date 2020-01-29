@@ -89,10 +89,14 @@ const searchParks = () => {
 
 // convert results to HTML format
 const parkAsHTML = (park) => {
-  const address = park.mapped_location.human_address.split("\"")
+  // split array method (then grab index of address)
+  const address = park.mapped_location.human_address.split("\"");
+  // parse data into JSON and grab address property
+  const parsed = JSON.parse(park.mapped_location.human_address);
+
   return `
-  <li>${park.park_name}: ${address[3]}
-    <button id="save_park--${park.park_name}--${address[3]}">save</button>
+  <li>${park.park_name}: ${parsed.address}
+    <button id="save_park--${park.park_name}--${parsed.address}">save</button>
     </li>
   `
 }
