@@ -9,3 +9,4 @@ import * as navigation from "./navigation.js"
 
 
 getItineraryAndRenderToDOM();
+

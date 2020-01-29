@@ -64,13 +64,17 @@ const searchConcerts = () => {
 
 // convert results to HTML format
 const concertAsHTML = (concertItem) => {
+  console.log('concertItem: ', concertItem);
   return `
-  <li>${concertItem.dates.start.localDate} ${concertItem.name}
-  <br/ > ${concertItem._embedded.venues[0].name}
-    <button id="save_concert--${concertItem.name}--${concertItem._embedded.venues[0].name}">save</button>
-    <a href="${concertItem.url}" target="_blank"> get tix </a>
-    </li>
-  `
+    <div class="results">
+      <img src="${concertItem.images[0].url}" alt="${concertItem.name}" srcset=""/>
+      <p>${concertItem.dates.start.localDate} ${concertItem.name}</p>
+      <p>${concertItem._embedded.venues[0].name}</p>
+      <button id="save_concert--${concertItem.name}--${concertItem._embedded.venues[0].name}">save</button>
+      <a href="${concertItem.url}" target="_blank"> get tix </a>
+      </li>
+    </div>
+      `
 }
 
 // save concert to itinerary
