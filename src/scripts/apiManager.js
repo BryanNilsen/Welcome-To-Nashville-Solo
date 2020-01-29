@@ -19,8 +19,16 @@ export const apiManager = {
     return fetch(urlWithKey)
       .then(response => response.json())
   },
-  getParks() {
-    const urlWithKey = `${parksUrl}`
+  getParks(keyword, options) {
+    let featureQueries = ""
+    options.forEach(option => {
+      const string = `&${option}=Yes`
+      featureQueries += string
+    });
+    const keyUpper = keyword.toUpperCase()
+    const urlWithKey = `${parksUrl}?$where=UPPER(park_name) like '%25${keyUpper}%25'${featureQueries}`
+    console.log('urlWithKey: ', urlWithKey);
+
     return fetch(urlWithKey)
       .then(response => response.json())
   },

@@ -9,4 +9,3 @@ import * as navigation from "./navigation.js"
 
 
 getItineraryAndRenderToDOM();
-apiManager.getParks();
