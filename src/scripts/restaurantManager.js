@@ -6,6 +6,7 @@ import { getItineraryAndRenderToDOM } from "./itineraryManager.js";
 const restaurantSearchInput = document.getElementById("restaurant_search_input")
 const restaurantSearchBtn = document.getElementById("restaurant_search_btn")
 const restaurantResultsList = document.getElementById("restaurant_results")
+const restaurantResultsCount = document.getElementById("restaurant_results_count")
 
 
 // get search results from Zomato API and append to DOM
@@ -16,6 +17,8 @@ const searchRestaurants = () => {
 
   apiManager.getRestaurants(keyword)
     .then(results => {
+      console.log('results: ', results);
+      restaurantResultsCount.innerHTML = `<hr/><p><em>search results: ${results.restaurants.length}</em></p>`
       // clear unordered list for new search results
       restaurantResultsList.innerHTML = "";
 
@@ -34,8 +37,24 @@ const searchRestaurants = () => {
 
 // convert results to HTML format
 const restaurantAsHTML = (restaurant) => {
+  // set default no-photo image
+  let photoUrl = "./images/no-photo.png"
+  if (restaurant.featured_image != "") {
+    photoUrl = restaurant.featured_image
+  }
+
   return `
-    <li>${restaurant.name} <button id="save_restaurant--${restaurant.name}--${restaurant.location.address}">save</button></li>
+  <div class="results">
+  <img src="${photoUrl}" alt="${restaurant.name}" srcset=""/>
+  <div class="tix"><a href="${restaurant.menu_url}" target="_blank"> MENU </a></div>
+  <div class="results_details">
+    <h4>${restaurant.name}</h4>
+    <p>${restaurant.location.address}</p>
+    <a href="#itinerary">
+    <button id="save_restaurant--${restaurant.name}--${restaurant.location.address}">save to itinerary</button>
+    </a>
+  </div>
+</div>
   `
 }
 
