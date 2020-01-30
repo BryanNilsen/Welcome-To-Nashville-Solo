@@ -7,6 +7,7 @@ const concertSearchInput = document.getElementById("concert_search_input");
 const concertSearchBtn = document.getElementById("concert_search_btn");
 const concertSelectList = document.getElementById("concert_select");
 const concertResultsList = document.getElementById("concert_results");
+const concertResultsCount = document.getElementById("concert_results_count");
 
 const genreIds = [
   { "id": "KnvZfZ7vAee", "name": "R&B" },
@@ -35,13 +36,13 @@ const searchConcerts = () => {
   const genreId = concertSelectList.value
   apiManager.getConcerts(genreId, keyword)
     .then(results => {
-      console.log('results: ', results);
       let allConcerts = [];
 
       if (results._embedded) {
         allConcerts = results._embedded.events
       }
       console.log('results: ', allConcerts);
+      concertResultsCount.innerHTML = `<hr/><p><em>search results: ${allConcerts.length}</em></p>`
 
       // clear unordered list for new search results
       concertResultsList.innerHTML = "";
@@ -64,15 +65,19 @@ const searchConcerts = () => {
 
 // convert results to HTML format
 const concertAsHTML = (concertItem) => {
-  console.log('concertItem: ', concertItem);
+  const date = new Date(concertItem.dates.start.dateTime)
   return `
     <div class="results">
       <img src="${concertItem.images[0].url}" alt="${concertItem.name}" srcset=""/>
-      <p>${concertItem.dates.start.localDate} ${concertItem.name}</p>
-      <p>${concertItem._embedded.venues[0].name}</p>
-      <button id="save_concert--${concertItem.name}--${concertItem._embedded.venues[0].name}">save</button>
-      <a href="${concertItem.url}" target="_blank"> get tix </a>
-      </li>
+      <div class="tix"><a href="${concertItem.url}" target="_blank"> GET TICKETS </a></div>
+      <div class="results_details">
+        <h4>${concertItem.name}</h4>
+        <p>${date.toDateString()} ${date.toLocaleTimeString()}</p>
+        <p>${concertItem._embedded.venues[0].name}</p>
+        <a href="#itinerary">
+        <button id="save_concert--${concertItem.name}--${concertItem._embedded.venues[0].name}">save to itinerary</button>
+        </a>
+      </div>
     </div>
       `
 }
