@@ -7,6 +7,7 @@ const parkSearchInput = document.getElementById("park_search_input")
 const parkSearchBtn = document.getElementById("park_search_btn")
 const parkResultsList = document.getElementById("park_results")
 const parkFeatureContainer = document.getElementById("park_feature_options")
+const parkResultsCount = document.getElementById("park_results_count")
 
 
 const parkFeatures = {
@@ -70,6 +71,8 @@ const searchParks = () => {
   apiManager.getParks(keyword, options)
     .then(results => {
       console.log('results: ', results);
+
+      parkResultsCount.innerHTML = `<hr/><p><em>search results: ${results.length}</em></p>`
 
       // clear unordered list for new search results
       parkResultsList.innerHTML = "";

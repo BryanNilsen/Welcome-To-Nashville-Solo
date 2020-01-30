@@ -16,6 +16,7 @@ const searchRestaurants = () => {
 
   apiManager.getRestaurants(keyword)
     .then(results => {
+      console.log('results: ', results);
       // clear unordered list for new search results
       restaurantResultsList.innerHTML = "";
 
@@ -34,8 +35,22 @@ const searchRestaurants = () => {
 
 // convert results to HTML format
 const restaurantAsHTML = (restaurant) => {
+  let photoUrl = "./images/no-photo.png"
+  if (restaurant.featured_image != "") {
+    photoUrl = restaurant.featured_image
+  }
   return `
-    <li>${restaurant.name} <button id="save_restaurant--${restaurant.name}--${restaurant.location.address}">save</button></li>
+  <div class="results">
+  <img src="${photoUrl}" alt="${restaurant.name}" srcset=""/>
+  <div class="tix"><a href="${restaurant.menu_url}" target="_blank"> MENU </a></div>
+  <div class="results_details">
+    <h4>${restaurant.name}</h4>
+    <p>${restaurant.location.address}</p>
+    <a href="#itinerary">
+    <button id="save_restaurant--${restaurant.name}--${restaurant.location.address}">save to itinerary</button>
+    </a>
+  </div>
+</div>
   `
 }
 
