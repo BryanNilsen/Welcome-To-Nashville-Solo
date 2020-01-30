@@ -34,7 +34,6 @@ populateGenreSelectInput();
 const searchConcerts = () => {
   // get search value from text input
   const keyword = concertSearchInput.value
-  console.log('keyword: ', keyword);
   const genreId = concertSelectList.value
   apiManager.getConcerts(genreId, keyword)
     .then(results => {

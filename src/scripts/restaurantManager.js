@@ -6,6 +6,7 @@ import { getItineraryAndRenderToDOM } from "./itineraryManager.js";
 const restaurantSearchInput = document.getElementById("restaurant_search_input")
 const restaurantSearchBtn = document.getElementById("restaurant_search_btn")
 const restaurantResultsList = document.getElementById("restaurant_results")
+const restaurantResultsCount = document.getElementById("restaurant_results_count")
 
 
 // get search results from Zomato API and append to DOM
@@ -17,6 +18,7 @@ const searchRestaurants = () => {
   apiManager.getRestaurants(keyword)
     .then(results => {
       console.log('results: ', results);
+      restaurantResultsCount.innerHTML = `<hr/><p><em>search results: ${results.restaurants.length}</em></p>`
       // clear unordered list for new search results
       restaurantResultsList.innerHTML = "";
 

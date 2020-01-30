@@ -6,6 +6,7 @@ import { getItineraryAndRenderToDOM } from "./itineraryManager.js";
 const artworkSearchInput = document.getElementById("artwork_search_input")
 const artworkSearchBtn = document.getElementById("artwork_search_btn")
 const artworkResultsList = document.getElementById("artwork_results")
+const artworkResultsCount = document.getElementById("artwork_results_count")
 
 
 // get search results from Metro Public Art API and append to DOM
@@ -17,7 +18,7 @@ const searchArtwork = () => {
   apiManager.getArtwork(keyword)
     .then(results => {
       console.log('results: ', results);
-
+      artworkResultsCount.innerHTML = `<hr/><p><em>search results: ${results.length}</em></p>`
       // clear unordered list for new search results
       artworkResultsList.innerHTML = "";
 
@@ -37,10 +38,18 @@ const searchArtwork = () => {
 // convert results to HTML format
 const artworkAsHTML = (artItem) => {
   return `
-  <li>${artItem.artwork}: ${artItem.last_name}
-    <button id="save_artwork--${artItem.artwork}--${artItem.location}">save</button>
-    <a href="${artItem.page_link.url}" target="_blank">more info</a>
-    </li>
+    <div class="results">
+      <div class="tix"><a href="${artItem.page_link.url}" target="_blank"> MORE INFO </a></div>
+      <div class="results_details">
+        <h4>${artItem.artwork}
+        <br/><em>${artItem.medium}</em></h4>
+        <p>by - ${artItem.last_name} ${artItem.first_name}</p>
+        <p class="art_description">${artItem.description ? artItem.description : "no description provided"}</p>
+        <a href="#itinerary">
+        <button id="save_artwork--${artItem.artwork}--${artItem.location}">save to itinerary</button>
+        </a>
+      </div>
+    </div>
   `
 }
 
