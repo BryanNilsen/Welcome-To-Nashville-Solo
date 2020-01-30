@@ -9,6 +9,7 @@ const concertSelectList = document.getElementById("concert_select");
 const concertResultsList = document.getElementById("concert_results");
 const concertResultsCount = document.getElementById("concert_results_count");
 
+// todo: get complete list of genres
 const genreIds = [
   { "id": "KnvZfZ7vAee", "name": "R&B" },
   { "id": "KnvZfZ7vAeA", "name": "Rock" },
@@ -26,6 +27,7 @@ const populateGenreSelectInput = () => {
   concertSelectList.innerHTML = optionsListHTML
 }
 
+// render genre select menu to DOM
 populateGenreSelectInput();
 
 // get search results from Ticketmaster API and append to DOM
@@ -57,22 +59,24 @@ const searchConcerts = () => {
           allResultsAsHTML += htmlRep;
         });
       }
-
       concertResultsList.innerHTML = allResultsAsHTML;
-    }
-    )
+    })
 }
 
 // convert results to HTML format
 const concertAsHTML = (concertItem) => {
-  const date = new Date(concertItem.dates.start.dateTime)
+  // convert date and time to readable format for user
+  const date = new Date(concertItem.dates.start.dateTime);
+  const dateSplit = date.toLocaleTimeString().split(" ");
+  const trimmedDate = dateSplit[0].substring(0, dateSplit[0].length - 3) + dateSplit[1]
+
   return `
     <div class="results">
       <img src="${concertItem.images[0].url}" alt="${concertItem.name}" srcset=""/>
       <div class="tix"><a href="${concertItem.url}" target="_blank"> GET TICKETS </a></div>
       <div class="results_details">
         <h4>${concertItem.name}</h4>
-        <p>${date.toDateString()} ${date.toLocaleTimeString()}</p>
+        <p>${date.toDateString()} - <em>${trimmedDate}</em></p>
         <p>${concertItem._embedded.venues[0].name}</p>
         <a href="#itinerary">
         <button id="save_concert--${concertItem.name}--${concertItem._embedded.venues[0].name}">save to itinerary</button>
@@ -91,6 +95,7 @@ const saveConcert = (evt) => {
       .then(getItineraryAndRenderToDOM)
   }
 }
+
 // attach event listeners to search button
 concertSearchBtn.addEventListener("click", searchConcerts)
 

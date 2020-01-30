@@ -35,10 +35,12 @@ const searchRestaurants = () => {
 
 // convert results to HTML format
 const restaurantAsHTML = (restaurant) => {
+  // set default no-photo image
   let photoUrl = "./images/no-photo.png"
   if (restaurant.featured_image != "") {
     photoUrl = restaurant.featured_image
   }
+
   return `
   <div class="results">
   <img src="${photoUrl}" alt="${restaurant.name}" srcset=""/>
