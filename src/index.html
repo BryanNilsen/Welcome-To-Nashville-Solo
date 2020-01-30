@@ -121,7 +121,7 @@
   </div>
   <h1 class="welcome">Welcome to</h1>
   <h1 class="nashville">NASHVILLE</h1>
-  <p class="center">What would you like to do?</p>
+  <h2 class="center clear-margin">Plan your visit to Music City!</h2>
 
   <!-- Begin Navigation -->
   <nav>
@@ -138,9 +138,11 @@
     <!-- Begin Concert Section -->
     <div id="concerts" class="section">
       <h1>Concerts</h1>
+      <input type="text" name="" id="concert_search_input" placeholder="search by artist or venue">
+      and/or
       <select name="" id="concert_select"></select>
-      <input type="text" name="" id="concert_search_input" placeholder="keyword">
       <button id="concert_search_btn">Search</button>
+      <div id="concert_results_count"></div>
       <section id="concert_results" class="results_container">
       </section>
     </div>
@@ -177,13 +179,13 @@
     </div>
     <!-- End Parks Section -->
 
-
   </div>
+
   <!-- End Section Containers -->
 
   <!-- Begin Itinerary Section -->
-  <div id="itinerary" class="">
-    <h1>Your Itinerary:</h1>
+  <div id="itinerary" class="itinerary_container">
+    <h1>Itinerary Details:</h1>
     <section id="itinerary_results">
     </section>
   </div>

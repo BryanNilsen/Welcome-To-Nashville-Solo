@@ -7,10 +7,19 @@ const itineraryContainer = document.getElementById("itinerary_results")
 //
 const itineraryAsHTML = (itinerary) => {
   return `
-    <p>Park: ${itinerary.park.name} - Location: ${itinerary.park.address}</p>
-    <p>Concert: ${itinerary.concert.name} - Location: ${itinerary.concert.address}</p>
-    <p>Restaurant: ${itinerary.restaurant.name} - Location: ${itinerary.restaurant.address}</p>
-    <p>Artwork: ${itinerary.artwork.name} - Location: ${itinerary.artwork.address}</p>
+    <div class="itinerary_results">
+      <h2>Rock Out</h2>
+      <h3>${itinerary.concert.name}<br />${itinerary.concert.address}</h3>
+      <hr/>
+      <h2>Park Your Butt</h2>
+      <h3>${itinerary.park.name}<br />${itinerary.park.address}</h3>
+      <hr/>
+      <h2>Get Your Culture On</h2>
+      <h3>${itinerary.artwork.name}<br />${itinerary.artwork.address}</h3>
+      <hr/>
+      <h2>Chow Down</h2>
+      <h3>${itinerary.restaurant.name}<br />${itinerary.restaurant.address}</h3>
+    </div>
   `
 }
 
