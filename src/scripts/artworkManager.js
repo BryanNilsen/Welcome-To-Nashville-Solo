@@ -13,11 +13,9 @@ const artworkResultsCount = document.getElementById("artwork_results_count")
 const searchArtwork = () => {
   // get search value from text input
   const keyword = artworkSearchInput.value
-  console.log('keyword: ', keyword);
 
   apiManager.getArtwork(keyword)
     .then(results => {
-      console.log('results: ', results);
       artworkResultsCount.innerHTML = `<hr/><p><em>search results: ${results.length}</em></p>`
       // clear unordered list for new search results
       artworkResultsList.innerHTML = "";
@@ -55,7 +53,6 @@ const artworkAsHTML = (artItem) => {
 
 // save artwork to itinerary
 const saveArtwork = (evt) => {
-  console.log(evt)
   // split the id
   const idStrings = evt.target.id.split("--")
   if (idStrings[0] === "save_artwork") {

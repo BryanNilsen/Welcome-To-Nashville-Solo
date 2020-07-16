@@ -11,8 +11,8 @@ I challenged myself, solo, to complete the same project in the same five-day tim
 Welcome to Nashville was written in Javascript and makes use of the following APIs:
 - [Data.Nashville.Gov](https://data.nashville.gov/)
 - [Ticketmaster](https://developer.ticketmaster.com/products-and-docs/apis/getting-started/)
-- [Zomato](https://developers.zomato.com/api)
-- [Google Maps](https://developers.google.com/maps/documentation/javascript/tutorial)
+- [Zomato Developers](https://developers.zomato.com/)
+- [Google Maps](https://developers.google.com/maps/documentation/javascript/tutorial) **
 
 
 
@@ -40,8 +40,10 @@ If you don't have it installed already, run the following in your terminal: `npm
 
 navigate to `/api` directory and launch json-server: `json-server -p 3000 -w db.json`
 
-navigate to the project root directory, where `index.html` lives, and launch your http server.
+navigate to the `/src` directory, where `index.html` lives, and launch your http server.
 
 
 ## NOTE:
-Overall, I'm pleased with what I was able to put together in such a short time while also helping others with their apps. Ideally, this app could benefit from some major refactoring, but as it stands, it was a great exercise to measure how far I've come in a relatively short period of time.
+Overall, I'm pleased with what I was able to put together in such a short time while also helping others with their apps. Ideally, this app could benefit from some major refactoring, but as it stands, it was a great exercise to measure how far I've come since I last attempted this project.
+
+_** I was also close to fully integrating the Google Maps API, which wasn't included in the original challenge._

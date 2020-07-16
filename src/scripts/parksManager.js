@@ -66,12 +66,10 @@ const searchParks = () => {
       options.push(featureId)
     }
   })
-  console.log('options: ', options);
 
 
   apiManager.getParks(keyword, options)
     .then(results => {
-      console.log('results: ', results);
 
       parkResultsCount.innerHTML = `<hr/><p><em>search results: ${results.length}</em></p>`
 

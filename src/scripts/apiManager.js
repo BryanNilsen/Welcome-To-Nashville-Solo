@@ -48,7 +48,6 @@ export const apiManager = {
       .then(response => response.json())
   },
   postItineraryItem(resource, name, address) {
-    console.log(resource, name, address)
     return fetch(itineraryUrl + "/1")
       .then(response => response.json())
       .then(itinerary => {
@@ -66,9 +65,7 @@ export const apiManager = {
   getMap() {
     const lat = 36.193625
     const long = -86.808126
-    // return fetch(`${googleMapUrl}?${searchQuery}&key=${apiKeys.googleKey}`)
     return fetch(`https://maps.googleapis.com/maps/api/staticmap?size=400x300&maptype=hybrid&zoom=16
     &center=${lat}, ${long}&markers=color:red%7Clabel:P%7C${lat},${long}&key=${apiKeys.googleKey}`)
-      .then(response => console.log(response.url))
   },
 }

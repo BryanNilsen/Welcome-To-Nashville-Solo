@@ -42,7 +42,6 @@ const searchConcerts = () => {
       if (results._embedded) {
         allConcerts = results._embedded.events
       }
-      console.log('results: ', allConcerts);
       concertResultsCount.innerHTML = `<hr/><p><em>search results: ${allConcerts.length}</em></p>`
 
       // clear unordered list for new search results
