@@ -54,6 +54,7 @@ renderParkFeatureOptions()
 
 // get search results from Metro Public Parks API and append to DOM
 const searchParks = () => {
+  apiManager.getMap()
   // get search value from text input
   const keyword = parkSearchInput.value
   // get checked checkboxes to run through fetch call
@@ -65,12 +66,10 @@ const searchParks = () => {
       options.push(featureId)
     }
   })
-  console.log('options: ', options);
 
 
   apiManager.getParks(keyword, options)
     .then(results => {
-      console.log('results: ', results);
 
       parkResultsCount.innerHTML = `<hr/><p><em>search results: ${results.length}</em></p>`
 
@@ -93,14 +92,37 @@ const searchParks = () => {
 // convert results to HTML format
 const parkAsHTML = (park) => {
   // split array method (then grab index of address)
-  const address = park.mapped_location.human_address.split("\"");
+  // const address = park.mapped_location.human_address.split("\"");
+
   // parse data into JSON and grab address property
   const parsed = JSON.parse(park.mapped_location.human_address);
 
+  const parkPhotoArray = ["Potters Field", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14"]
+  const photoName = parkPhotoArray[Math.floor(Math.random() * parkPhotoArray.length)];
+  let parkFeaturesList = ""
+  for (const key in park) {
+    if (park[key] === "Yes") {
+      // remove multiple underscores: use replace method, you need the regex /<term>/gi << global case insensitive
+      parkFeaturesList += `<li>${key.replace(/_/gi, " ")}</li>`
+    }
+  }
+
   return `
-  <li>${park.park_name}: ${parsed.address}
-    <button id="save_park--${park.park_name}--${parsed.address}">save</button>
-    </li>
+    <div class="results">
+    <img src="./images/parks/${photoName}.jpg" alt="${photoName}" srcset=""/>
+    <div class="tix"><a href="https://www.google.com/maps" target="_blank"> MAP </a></div>
+    <div class="results_details">
+      <h4>${park.park_name}</h4>
+      <p>${parsed.address}</p>
+      <p class="park_features_list">Park Features:</p>
+      <ul class="park_features_list">
+      ${parkFeaturesList}
+      </ul>
+      <a href="#itinerary">
+      <button id="save_park--${park.park_name}--${parsed.address}">save to itinerary</button>
+      </a>
+    </div>
+  </div>
   `
 }
 

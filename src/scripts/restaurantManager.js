@@ -13,11 +13,9 @@ const restaurantResultsCount = document.getElementById("restaurant_results_count
 const searchRestaurants = () => {
   // get search value from text input
   const keyword = restaurantSearchInput.value
-  console.log('keyword: ', keyword);
 
   apiManager.getRestaurants(keyword)
     .then(results => {
-      console.log('results: ', results);
       restaurantResultsCount.innerHTML = `<hr/><p><em>search results: ${results.restaurants.length}</em></p>`
       // clear unordered list for new search results
       restaurantResultsList.innerHTML = "";
